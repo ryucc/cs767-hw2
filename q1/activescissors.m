@@ -12,11 +12,11 @@ function [imOut, parentx parenty] = activescissors(imIn)
 	x = x(1,:);
 	seed(1) = x(2);
 	seed(2) = x(1);
-	sup = sum(sum(abs(grey)));
 	sup = Inf(1);
-	dd = sup*ones(size(grey));
+	dd = Inf(size(grey));
 	parentx = sup*ones(size(grey));
 	parenty = sup*ones(size(grey));
+	visited = ones(size(grey));
 
 	seed = uint16(seed)
 
@@ -40,13 +40,13 @@ function [imOut, parentx parenty] = activescissors(imIn)
 		qx(ind) = [];
 		qy(ind) = [];
 		qd(ind) = [];
+		visited(x,y) = 0;
 		for i = -1:1
 			for j = -1:1
 				if i+x>0 && i+x <=m && j+y>0 && j+y<=n
 					d = dist(x,y,3*(i+1)+j+2);
 					if dd(x+i,y+j) > dd(x,y) + d
 						dd(x+i,y+j) = dd(x,y) + d;
-						dd(x+i,y+j);
 						qx = [qx x+i];
 						qy = [qy y+j];
 						qd = [qd dd(x,y)+d];
@@ -65,7 +65,7 @@ function [imOut, parentx parenty] = activescissors(imIn)
 		y(2) = x(1);
 		y(1) = x(2);
 		x = uint16(y);
-		while x(1)~=seed(1) && x(2)~=seed(2)
+		while x(1)~=seed(1) || x(2)~=seed(2)
 			x = uint16(x);
 			temp(x(1),x(2),1) = 1.0;
 			temp(x(1),x(2),2) = 1.0;
@@ -74,6 +74,10 @@ function [imOut, parentx parenty] = activescissors(imIn)
 			bb = parenty(x(1),x(2));
 			x = [aa bb];
 		end
+		x(1)
+		x(2)
+		seed(1)
+		seed(2)
 		imshow(temp);
 	end
 end
