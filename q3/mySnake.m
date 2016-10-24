@@ -14,6 +14,7 @@ function imOut = mySnake(imIn,imInitial,alpha,beta)
 	end
 
 
+
 	
 
 end
