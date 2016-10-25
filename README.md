@@ -40,14 +40,22 @@ after that, is a standard shortest path algorithm from seed to destination.
 ### Failures:
 - This training does not do well on scaling. It can do well on test.png, where the circles are about the same size of the training circle, but not the others.
 
-### Problem 3
+### Result image:
 
-Usage: 
-- mySnake : as specified.
-- myGSnake: 
+- The Image is smoothed to calculate gradient. 
+- ![alt text][/result-images/q2/centers]
+
+## Problem 3
+
+###Usage: 
+- mySnake(imIn, imInitial,alpha,beta) : as specified.
+- myGSnake(imIn,alpha,beta) : 
+  1. Image shows.
+  2. Click on the points on the snake.
+  3. Press enter.
 
 
-##implementation:
+###implementation:
 - Dynamic programing to find the next best snake.
 - Basically same algorithm as class. But two differences:
  1. It is in a loop.
@@ -57,7 +65,9 @@ Usage:
  2. To make it a loop, you have to fix the first point and second point, and find the corresponding 81 snakes. (If you only have the first order term, then you only fix the first point, and find all 9 snakes).
  3. The added Energy function for the last point is more complex. It interacts back to the first and second point.
 
-##Results:
+###Results:
 - When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.
 
 - A good alpha and beta is about the value of the **average gradient of the gradient of the image**, divided by your **average edge length** on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length.
+
+
