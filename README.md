@@ -1,10 +1,14 @@
 ### Problem 1
 
-scissors(imIn, seedRow, seedCol,destRow,destCol):
-Usage: works as specified.
-Optimization: when generating the distances, the diagonal edges can be computed by:
-kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1]
-the do a convolution with imIn, and do some row shifting.
+##scissors(imIn, seedRow, seedCol,destRow,destCol):
+
+##Usage: works as specified.
+
+##Optimization: when generating the distances, the diagonal edges can be computed by:
+
+##kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1]
+
+##the do a convolution with imIn, and do some row shifting.
 
 after that, is a standard shortest path algorithm from seed to destination.
 
