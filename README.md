@@ -15,14 +15,14 @@ after that, is a standard shortest path algorithm from seed to destination.
  3. activescissors will calculate the shortest path tree.
  4. while you are happy, click on any point on the image, then press enter. After that, activescissors will show the cut from the seed to your point.
 - Optimization:
-- Once the seed is decided, nd the shortest path tree is generated, the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.
+ - Once the seed is decided, nd the shortest path tree is generated, the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.
 
 - This works out pretty well.
 
 ## Problem 2.2
 ### Usage: 
 - yourcellvar = myHoughCircleTrain(imBW,c,ptlist)
- - Outputs a cell oject containing the trained data.
+ - Outputs a cell object containing the trained data.
 - centers = myHoughCircleTest(imBWnew,yourcellvar)
  - Outputs the coordinates of the top two detected centers. and also shows them on the screen.
 
@@ -43,19 +43,19 @@ after that, is a standard shortest path algorithm from seed to destination.
 ### Problem 3
 
 Usage: 
-- mySnake :as specified
+- mySnake : as specified.
 - myGSnake: 
 
 
 ##implementation:
 - Dynamic programing to find the next best snake.
 - Basically same algorithm as class. But two differences:
-1. It is in a loop.
-2. It has second order terms.
+ 1. It is in a loop.
+ 2. It has second order terms.
 - To fix the algorithm to work on this problem, you have to do the following:
-1. Keep track of all the best configurations by fixing the previous 2 points. i.e. you will have 81 previous states instead of 9.
-2. To make it a loop, you have to fix the first point and second point, and find the corresponding 81 snakes. (If you only have the first order term, then you only fix the first point, and find all 9 snakes).
-3. The added Energy function for the last point is more complex. It interacts back to the first and second point.
+ 1. Keep track of all the best configurations by fixing the previous 2 points. i.e. you will have 81 previous states instead of 9.
+ 2. To make it a loop, you have to fix the first point and second point, and find the corresponding 81 snakes. (If you only have the first order term, then you only fix the first point, and find all 9 snakes).
+ 3. The added Energy function for the last point is more complex. It interacts back to the first and second point.
 
 ##Results:
 When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.
