@@ -4,7 +4,9 @@ function [imOut, parentx parenty] = activescissors(imIn)
 	if dims(2) > 2
 		grey = rgb2gray(imIn);
 	end
-	grey = im2double(grey);
+	if strcmp(class(grey),'double') == 0
+		grey = im2double(grey);
+	end
 	[m,n] = size(grey);
 	dist = dists(grey);
 	imshow(imIn);
