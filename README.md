@@ -1,24 +1,22 @@
-### Problem 1
+## Problem 1
 
-- scissors(imIn, seedRow, seedCol,destRow,destCol):
+### scissors(imIn, seedRow, seedCol,destRow,destCol):
 - Usage: works as specified.
 - Optimization: when generating the distances, the diagonal edges can be computed by:
 - kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1] then do a convolution with imIn, and do some row shifting.
 
 after that, is a standard shortest path algorithm from seed to destination.
 
-activescissors(imIn):
-Usage: 
-1. input the image
-2. the image will show, click on the seed you want, then press enter.
-3. activescissors will calculate the shortest path tree.
-4. while you are happy, click on any point on the image, then press enter. 
-	activescissors will show the cut from the seed to your point.
-Optimization:
-Once the seed is decided, nd the shortest path tree is generated, the shortest pathes can be shown in O(length of path) time.
-I think this is convinient for testing, so I made this function.
+###activescissors(imIn):
+- Usage: 
+ 1. input the image
+ 2. the image will show, click on the seed you want, then press enter.
+ 3. activescissors will calculate the shortest path tree.
+ 4. while you are happy, click on any point on the image, then press enter. After that, activescissors will show the cut from the seed to your point.
+- Optimization:
+- Once the seed is decided, nd the shortest path tree is generated, the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.
 
-This works out pretty well.
+- This works out pretty well.
 
 ### Problem 2.2
 Usage: 
