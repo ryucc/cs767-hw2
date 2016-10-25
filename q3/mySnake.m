@@ -1,4 +1,4 @@
-function out_points = mySnake(imIn,alpha,beta)
+function out_points = mySnake(imIn,imInitial,alpha,beta)
 	dims = size(size(imIn));
 	grey = imIn;
 	if dims(2) > 2
@@ -11,10 +11,8 @@ function out_points = mySnake(imIn,alpha,beta)
 		imIn = im2double(imIn);
 	end
 	imshow(imIn);
-	x = ginput();
-	temp = x(:,1);
-	x(:,1) = x(:,2);
-	x(:,2) = temp;
+	[row, col] = find(imInitial);
+	x = [row col];
 	x = uint16(x);
 	[outpts,energy] = mySnake1(grey,x,alpha,beta);
 	[a,b] = size(outpts);
@@ -35,7 +33,7 @@ function out_points = mySnake(imIn,alpha,beta)
 	nex = outpts(1,:);
 	line([cur(2), nex(2)],[cur(1),nex(1)]);
 
-	for l = 1:50
+	for l = 1:15
 		imshow(imIn);
 		disp(l);
 		[outpts,energy] = mySnake1(grey,outpts,alpha,beta);

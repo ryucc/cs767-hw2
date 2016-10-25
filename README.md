@@ -43,7 +43,7 @@ after that, is a standard shortest path algorithm from seed to destination.
 ### Result image:
 
 - The Image is smoothed to calculate gradient. 
-- ![alt text][/result-images/q2/centers]
+- ![alt text][/result-images/q2/centers.jpg]
 
 ## Problem 3
 
@@ -68,6 +68,16 @@ after that, is a standard shortest path algorithm from seed to destination.
 ###Results:
 - When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.
 
-- A good alpha and beta is about the value of the **average gradient of the gradient of the image**, divided by your **average edge length** on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length.
+- I thought good alpha and beta is about the value of the **average gradient of the gradient of the image**, divided by your **average edge length** on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length. But alpha needs to be even smaller.
 
+- Test image with alpha = 0.000001, beta = 0.0000001, 15 iterations.
+- ![alt text][result-images/q3/snake.jpg]
+
+- Test image on the second order term: alpha = 0, beta = 1, image is all black.
+- The snake evolves into a straight line.
+- ![alt text][result-images/q3/line.jpg]
+
+- Test image on the first order term: alpha = 1, beta = 0, image is all black.
+- The snake evolves into a point.
+- ![alt text][result-images/q3/point.jpg]
 
