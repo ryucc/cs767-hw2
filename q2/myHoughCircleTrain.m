@@ -3,7 +3,6 @@ function yourcellvar = myHoughCircleTrain(imBW,c,ptlist)
 	gauss = fspecial('gaussian', 5 ,10);
 	imBW = conv2(gauss,imBW);
 	imBW = imBW(3:end-2,3:end-2);
-	imshow(imBW);
 	dx = [1 2 0  -2 -1; 2 4  0 -4 -2; 1 2 0 -2 -1];
 	dy = dx'; 
 	gradx = conv2(imBW,dx);

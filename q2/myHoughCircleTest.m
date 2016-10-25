@@ -1,13 +1,12 @@
-function yourcellvar = myHoughCircleTrain(imBW,yourcellvar)
+function centers = myHoughCircleTrain(imBW,yourcellvar)
 	imshow(imBW);
+	centers = [];
 	figure;
 	% calculate gradient direction
 	dims = size(size(imBW));
-	grey = imBW;
 	if dims(2) > 2
 		imBW = rgb2gray(imBW);
 	end
-	imBW = edge(imBW);
 	if strcmp(class(imBW),'double') == 0
 		imBW = im2double(imBW);
 	end
@@ -46,31 +45,35 @@ function yourcellvar = myHoughCircleTrain(imBW,yourcellvar)
 	accum = zeros(size(imBW));
 	for i = 1:n
 		for j = 1:m
-			x = votex(i,j) + i;
-			y = votey(i,j) + j;
-			if x>1 && x < n && y>1 && y<m
-				accum(x,y) = accum(x,y)+1;
+			for k = -1:1
+				x = votex(i,j) + i;
+				y = votey(i,j) + j;
+				if x>1 && x < n && y>1 && y<m
+					accum(x,y) = accum(x,y)+1;
+				end
 			end
 		end
 	end
 	sorted = sort(accum(:));
-	first = sorted(end)
-	sec = sorted(end-1)
-	[row col] = find(accum==first)
+	first = sorted(end);
+	sec = sorted(end-1);
+	[row col] = find(accum==first);
 	[pts,temp] = size(row);
 	sav = zeros(size(imBW));
 	sav = imBW;
+	
 	if pts>1
+		centers = [row(1) col(1);row(2) col(2)];
 		sav(row(1),col(1)) = 1;
 		sav(row(2),col(2)) = 1;
 		imshow(sav);
 	else
+		centers = [row(1) col(1)];
 		sav(row(1),col(1)) = 1;
-		[row col] = find(accum==sec)
+		[row col] = find(accum==sec);
 		sav(row(1),col(1)) = 1;
+		centers = [centers;row(1) col(1)];
 		imshow(sav);
 	end
-
-
 	
 end
