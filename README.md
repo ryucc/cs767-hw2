@@ -21,8 +21,10 @@ after that, is a standard shortest path algorithm from seed to destination.
 
 ## Problem 2.2
 ### Usage: 
-- yourcellvar = myHoughCircleTrain(imBW,c,ptlist) Outputs a cell oject containing the trained data.
-- centers = myHoughCircleTest(imBWnew,yourcellvar) Outputs the coordinates of the top two detected centers. and also shows them on the screen.
+- yourcellvar = myHoughCircleTrain(imBW,c,ptlist)
+ - Outputs a cell oject containing the trained data.
+- centers = myHoughCircleTest(imBWnew,yourcellvar)
+ - Outputs the coordinates of the top two detected centers. and also shows them on the screen.
 
 ### Training stage:
 - In lecture 5, the generalized hough transform used the local gradient too decide where to vote. So in the training stage, I do:
