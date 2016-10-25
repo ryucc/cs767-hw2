@@ -3,7 +3,8 @@
 ### scissors(imIn, seedRow, seedCol,destRow,destCol):
 - Usage: works as specified.
 - Optimization: when generating the distances, the diagonal edges can be computed by:
-- kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1] then do a convolution with imIn, and do some row shifting.
+1. kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1] 
+2. Do a convolution with imIn and kernel, and do some row shifting.
 
 after that, is a standard shortest path algorithm from seed to destination.
 
