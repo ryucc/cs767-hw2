@@ -1,0 +1,109 @@
+<h2 id="problem-1">Problem 1</h2>
+<h3 id="scissorsimin-seedrow-seedcoldestrowdestcol">scissors(imIn, seedRow, seedCol,destRow,destCol):</h3>
+<ul>
+<li>Usage: works as specified.</li>
+<li>Optimization: when generating the distances, the diagonal edges can be computed by:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1]</li>
+<li>Do a convolution with imIn and kernel, and do some row shifting.</li>
+</ol>
+<p>after that, is a standard shortest path algorithm from seed to destination.</p>
+<h3 id="activescissorsimin">activescissors(imIn):</h3>
+<ul>
+<li>Usage:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>input the image</li>
+<li>the image will show, <strong>click on the seed</strong> you want, then <strong>press enter</strong>.</li>
+<li>activescissors will calculate the shortest path tree.</li>
+<li>while you are happy, <strong>click on any point</strong> on the image, then <strong>press enter</strong>. After that, activescissors will show the cut from the seed to your point.</li>
+</ol>
+<ul>
+<li>Optimization:</li>
+<li><p>Once the seed is decided, then the shortest path tree is generated, all the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.</p></li>
+<li><p>This works out pretty well.</p></li>
+</ul>
+<h2 id="problem-2.2">Problem 2.2</h2>
+<h3 id="usage">Usage:</h3>
+<ul>
+<li>yourcellvar = myHoughCircleTrain(imBW,c,ptlist)</li>
+<li>Outputs a cell object containing the trained data.</li>
+<li>centers = myHoughCircleTest(imBWnew,yourcellvar)</li>
+<li>Outputs the coordinates of the top two detected centers. and also shows them on the screen.</li>
+</ul>
+<h3 id="training-stage">Training stage:</h3>
+<ul>
+<li>In lecture 5, the generalized hough transform used the local gradient too decide where to vote. So in the training stage, I do:</li>
+<li>For each point in the point list:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Put its <strong>normalized local gradient</strong> into yourcellvar.</li>
+<li>Put its <strong>relative position</strong> to the reference point into yourcellvar.</li>
+</ol>
+<ul>
+<li>In the detection stage, I do:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Calculate the normalized gradient for each pixel.</li>
+<li>Find the point with closest gradient in yourcellvar. Since the gradient is normalized, the inner product would be enough.</li>
+<li>vote, with the -(relative position) of the point in yourcellvar to the pixel.</li>
+</ol>
+<h3 id="failures">Failures:</h3>
+<ul>
+<li>This training does not do well on scaling. It can do well on test.png, where the circles are about the same size of the training circle, but not the others.</li>
+</ul>
+<h3 id="result-image">Result image:</h3>
+<ul>
+<li>The Image is smoothed to calculate gradient.
+<ul>
+<li><img src="result-images/q2/centers.jpg" title="fig:" alt="alt text" /></li>
+</ul></li>
+</ul>
+<h2 id="problem-3">Problem 3</h2>
+<h3 id="usage-1">Usage:</h3>
+<ul>
+<li>mySnake(imIn, imInitial,alpha,beta) : as specified.</li>
+<li>myGSnake(imIn,alpha,beta) :</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Image shows.</li>
+<li>Click on the points on the snake.</li>
+<li>Press enter.</li>
+</ol>
+<h3 id="implementation">implementation:</h3>
+<ul>
+<li>Dynamic programing to find the next best snake.</li>
+<li>Basically same algorithm as class. But two differences:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>It is in a loop.</li>
+<li>It has second order terms.</li>
+</ol>
+<ul>
+<li>To fix the algorithm to work on this problem, you have to do the following:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Keep track of all the best configurations by fixing the previous 2 points. i.e. you will have 81 previous states instead of 9.</li>
+<li>To make it a loop, you have to fix the first point and second point, and find the corresponding 81 snakes. (If you only have the first order term, then you only fix the first point, and find all 9 snakes).</li>
+<li>The added Energy function for the last point is more complex. It interacts back to the first and second point.</li>
+</ol>
+<h3 id="results">Results:</h3>
+<ul>
+<li><p>When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.</p></li>
+<li><p>I thought good alpha and beta is about the value of the <strong>average gradient of the gradient of the image</strong>, divided by your <strong>average edge length</strong> on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length. But alpha needs to be even smaller.</p></li>
+<li>Test image with alpha = 0.000001, beta = 0.0000001, 15 iterations.
+<ul>
+<li><img src="result-images/q3/snake.jpg" title="fig:" alt="alt text" /></li>
+</ul></li>
+<li>Test image on the second order term: alpha = 0, beta = 1, image is all black.</li>
+<li>The snake evolves into a straight line.
+<ul>
+<li><img src="result-images/q3/line.jpg" title="fig:" alt="alt text" /></li>
+</ul></li>
+<li>Test image on the first order term: alpha = 1, beta = 0, image is all black.</li>
+<li>The snake evolves into a point.
+<ul>
+<li><img src="result-images/q3/point.jpg" title="fig:" alt="alt text" /></li>
+</ul></li>
+</ul>
