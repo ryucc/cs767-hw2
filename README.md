@@ -60,4 +60,4 @@ Usage:
 ##Results:
 - When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.
 
-- A good alpha and beta is about the value of the *average gradient of the gradient of the image*, divided by your *average edge length* on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length.
+- A good alpha and beta is about the value of the **average gradient of the gradient of the image**, divided by your **average edge length** on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length.
