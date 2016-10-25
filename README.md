@@ -1,14 +1,9 @@
 ### Problem 1
 
-##scissors(imIn, seedRow, seedCol,destRow,destCol):
-
-##Usage: works as specified.
-
-##Optimization: when generating the distances, the diagonal edges can be computed by:
-
-##kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1]
-
-##the do a convolution with imIn, and do some row shifting.
+- scissors(imIn, seedRow, seedCol,destRow,destCol):
+- Usage: works as specified.
+- Optimization: when generating the distances, the diagonal edges can be computed by:
+- kernel = [1 0;0 -1], [0 1; -1 0]; [1 1; 0 0; -1 -1], [1 0 -1;1 0 -1] then do a convolution with imIn, and do some row shifting.
 
 after that, is a standard shortest path algorithm from seed to destination.
 
@@ -46,4 +41,22 @@ This training does not do well on scaling. It can do well on test.png, where the
 
 ### Problem 3
 
-Usage:
+Usage: 
+- mySnake :as specified
+- myGSnake: 
+
+
+##implementation:
+- Dynamic programing to find the next best snake.
+- Basically same algorithm as class. But two differences:
+1. It is in a loop.
+2. It has second order terms.
+- To fix the algorithm to work on this problem, you have to do the following:
+1. Keep track of all the best configurations by fixing the previous 2 points. i.e. you will have 81 previous states instead of 9.
+2. To make it a loop, you have to fix the first point and second point, and find the corresponding 81 snakes. (If you only have the first order term, then you only fix the first point, and find all 9 snakes).
+3. The added Energy function for the last point is more complex. It interacts back to the first and second point.
+
+##Results:
+When first used, the internal energy was donminating. I had to fix alpha and beta to a very small value.
+
+A good alpha and beta is about the value of the gradient of the gradient of the image, divided by your average edge length on the snake. Because you have square terms, the change in internal energy when moving a vertax is about the edge length.
