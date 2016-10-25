@@ -11,11 +11,11 @@ after that, is a standard shortest path algorithm from seed to destination.
 ### activescissors(imIn):
 - Usage: 
  1. input the image
- 2. the image will show, click on the seed you want, then press enter.
+ 2. the image will show, **click on the seed** you want, then **press enter**.
  3. activescissors will calculate the shortest path tree.
- 4. while you are happy, click on any point on the image, then press enter. After that, activescissors will show the cut from the seed to your point.
+ 4. while you are happy, **click on any point** on the image, then **press enter**. After that, activescissors will show the cut from the seed to your point.
 - Optimization:
- - Once the seed is decided, nd the shortest path tree is generated, the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.
+ - Once the seed is decided, then the shortest path tree is generated, all the shortest pathes can be shown in O(length of path) time. I think this is convinient for testing, so I made this function.
 
 - This works out pretty well.
 
@@ -29,8 +29,8 @@ after that, is a standard shortest path algorithm from seed to destination.
 ### Training stage:
 - In lecture 5, the generalized hough transform used the local gradient too decide where to vote. So in the training stage, I do:
 - For each point in the point list:
- 1. Put its normalized local gradient into yourcellvar.
- 2. Put its relative position to the reference point into yourcellvar.
+ 1. Put its **normalized local gradient** into yourcellvar.
+ 2. Put its **relative position** to the reference point into yourcellvar.
 
 - In the detection stage, I do:
   1. Calculate the normalized gradient for each pixel.
